@@ -29,11 +29,11 @@ const Weather = () => {
         `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`
       );
       setWeatherData(response.data);
-      setLoading(false);
     } catch (err) {
-      setLoading(false);
       setError("Failed to fetch weather data");
       alert("Failed to fetch weather data");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,10 +54,8 @@ const Weather = () => {
         />
         <button type="submit">Search</button>
       </form>
-
-      {loading && <p>Loading data…</p>}
+      {loading && <p>Loading data...</p>}
       {error && <p>{error}</p>}
-
       {weatherData && (
         <div className="weather-cards">
           <WeatherCard
